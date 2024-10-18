@@ -1,17 +1,170 @@
 import 'package:flutter/material.dart';
-import 'page2.dart';
-
-// void main() {
-//   runApp(const MyApp());
-// }
+import 'Page2.dart';
 
 void main() => runApp(MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: home(),
+      home: LoginPage(),
     ));
 
+class LoginPage extends StatelessWidget {
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController rombelController = TextEditingController();
+  final TextEditingController rayonController = TextEditingController();
+  final TextEditingController schoolController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Card(
+                  elevation: 8,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  color: Colors.white.withOpacity(0.9),
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        CircleAvatar(
+                          radius: 50,
+                          backgroundImage:
+                              AssetImage('assets/images/asdfasdf.jpg'),
+                        ),
+                        SizedBox(height: 20),
+                        Text(
+                          "Form Input",
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        TextField(
+                          controller: nameController,
+                          decoration: InputDecoration(
+                            labelText: 'Nama',
+                            prefixIcon: Icon(Icons.person),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            filled: true,
+                            fillColor: Colors.white70,
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        TextField(
+                          controller: rombelController,
+                          decoration: InputDecoration(
+                            labelText: 'Rombel',
+                            prefixIcon: Icon(Icons.group),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            filled: true,
+                            fillColor: Colors.white70,
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        TextField(
+                          controller: rayonController,
+                          decoration: InputDecoration(
+                            labelText: 'Rayon',
+                            prefixIcon: Icon(Icons.location_city),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            filled: true,
+                            fillColor: Colors.white70,
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        TextField(
+                          controller: schoolController,
+                          decoration: InputDecoration(
+                            labelText: 'Sekolah',
+                            prefixIcon: Icon(Icons.school),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            filled: true,
+                            fillColor: Colors.white70,
+                          ),
+                        ),
+                        SizedBox(height: 20),
+                        SizedBox(
+                          width: double.infinity,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              // Kirim data ke halaman home
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => home(
+                                    name: nameController.text,
+                                    rombel: rombelController.text,
+                                    rayon: rayonController.text,
+                                    school: schoolController.text,
+                                  ),
+                                ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                              padding: EdgeInsets.all(15),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              backgroundColor: Colors.orange[700],
+                            ),
+                            child: Text(
+                              'Submit',
+                              style: TextStyle(
+                                fontSize: 18,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
 class home extends StatelessWidget {
-  const home({super.key});
+  final String name;
+  final String rombel;
+  final String rayon;
+  final String school;
+
+  const home({
+    Key? key,
+    required this.name,
+    required this.rombel,
+    required this.rayon,
+    required this.school,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,140 +172,135 @@ class home extends StatelessWidget {
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
-            image: DecorationImage(
-          image: AssetImage("assets/images/background.jpg"),
-          fit: BoxFit.cover,
-        )),
-        child: Stack(alignment: Alignment.center, children: <Widget>[
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.shortestSide,
-            padding: EdgeInsets.all(20.0),
-            alignment: Alignment.center,
+          image: DecorationImage(
+            image: AssetImage("assets/images/background.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
             child: Card(
+              elevation: 10,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15.0),
+                borderRadius: BorderRadius.circular(20.0),
               ),
-              color: Color.fromRGBO(252, 219, 141, 1),
-              child: Center(
+              color: Colors.white.withOpacity(0.9),
+              child: Padding(
+                padding: const EdgeInsets.all(30.0),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
+                    // Gambar Profil
                     CircleAvatar(
-                      radius: 100.0,
+                      radius: 60.0,
                       backgroundImage: AssetImage("assets/images/asdfasdf.jpg"),
                     ),
+                    SizedBox(height: 20),
+                    // Nama
                     Text(
-                      "Muhamad Reza Aditya",
+                      name,
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 18, color: Colors.black),
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black87,
+                      ),
                     ),
-                    Text(
-                      "Vocational High School Student at SMK Wikrama Bogor",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 16, color: Color(0xF9916B0D)),
+                    SizedBox(height: 10),
+                    Divider(
+                      color: Colors.orange,
+                      thickness: 2,
+                      indent: 50,
+                      endIndent: 50,
                     ),
-                    
-                    TextButton(onPressed: (){
-                      Navigator.push(
-                        context, 
-                        MaterialPageRoute(builder: (context) => Page2()),
-                        );
-                    }, child: Text('See More'),)
+                    SizedBox(height: 20),
+                    // Informasi Rombel
+                    Row(
+                      children: [
+                        Icon(Icons.group, color: Colors.orange[700]),
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            "Rombel: $rombel",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    // Informasi Rayon
+                    Row(
+                      children: [
+                        Icon(Icons.location_city, color: Colors.orange[700]),
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            "Rayon: $rayon",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    // Informasi Sekolah
+                    Row(
+                      children: [
+                        Icon(Icons.school, color: Colors.orange[700]),
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: Text(
+                            "Sekolah: $school",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: Colors.black87,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 30),
+                    // Tombol "See More"
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          // Aksi ketika tombol ditekan
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Page2()),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.all(15),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          backgroundColor: Colors.orange[700],
+                        ),
+                        child: Text(
+                          'See More',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
-          )
-        ]),
+          ),
+        ),
       ),
     );
   }
 }
-
-// class MyHomePage extends StatefulWidget {
-//   const MyHomePage({super.key, required this.title});
-
-//   // This widget is the home page of your application. It is stateful, meaning
-//   // that it has a State object (defined below) that contains fields that affect
-//   // how it looks.
-
-//   // This class is the configuration for the state. It holds the values (in this
-//   // case the title) provided by the parent (in this case the App widget) and
-//   // used by the build method of the State. Fields in a Widget subclass are
-//   // always marked "final".
-
-//   final String title;
-
-//   @override
-//   State<MyHomePage> createState() => _MyHomePageState();
-// }
-
-// class _MyHomePageState extends State<MyHomePage> {
-//   int _counter = 0;
-
-//   void _incrementCounter() {
-//     setState(() {
-//       // This call to setState tells the Flutter framework that something has
-//       // changed in this State, which causes it to rerun the build method below
-//       // so that the display can reflect the updated values. If we changed
-//       // _counter without calling setState(), then the build method would not be
-//       // called again, and so nothing would appear to happen.
-//       _counter++;
-//     });
-//   }
-
-//   @override
-//   Widget build(BuildContext context) {
-//     // This method is rerun every time setState is called, for instance as done
-//     // by the _incrementCounter method above.
-//     //
-//     // The Flutter framework has been optimized to make rerunning build methods
-//     // fast, so that you can just rebuild anything that needs updating rather
-//     // than having to individually change instances of widgets.
-//     return Scaffold(
-//       appBar: AppBar(
-//         // TRY THIS: Try changing the color here to a specific color (to
-//         // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-//         // change color while the other colors stay the same.
-//         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-//         // Here we take the value from the MyHomePage object that was created by
-//         // the App.build method, and use it to set our appbar title.
-//         title: Text(widget.title),
-//       ),
-//       body: Center(
-//         // Center is a layout widget. It takes a single child and positions it
-//         // in the middle of the parent.
-//         child: Column(
-//           // Column is also a layout widget. It takes a list of children and
-//           // arranges them vertically. By default, it sizes itself to fit its
-//           // children horizontally, and tries to be as tall as its parent.
-//           //
-//           // Column has various properties to control how it sizes itself and
-//           // how it positions its children. Here we use mainAxisAlignment to
-//           // center the children vertically; the main axis here is the vertical
-//           // axis because Columns are vertical (the cross axis would be
-//           // horizontal).
-//           //
-//           // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-//           // action in the IDE, or press "p" in the console), to see the
-//           // wireframe for each widget.
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: <Widget>[
-//             const Text(
-//               'You have pushed the button this many times:',
-//             ),
-//             Text(
-//               '$_counter',
-//               style: Theme.of(context).textTheme.headlineMedium,
-//             ),
-//           ],
-//         ),
-//       ),
-//       floatingActionButton: FloatingActionButton(
-//         onPressed: _incrementCounter,
-//         tooltip: 'Increment',
-//         child: const Icon(Icons.add),
-//       ), // This trailing comma makes auto-formatting nicer for build methods.
-//     );
-//   }}
